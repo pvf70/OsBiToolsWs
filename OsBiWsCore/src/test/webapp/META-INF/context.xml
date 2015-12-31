@@ -1,0 +1,7 @@
+<Context>
+    <Resource name="OsBiToolsUsers" auth="Container"
+              type="org.apache.catalina.UserDatabase"
+              description="OsBiTools Users"
+              factory="org.apache.catalina.users.MemoryUserDatabaseFactory"
+              pathname="conf/osbitools-users.xml" />    
+</Context>

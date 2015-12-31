@@ -1,0 +1,59 @@
+<!--  Authentication form -->
+	<div>
+		<form action="auth" method="post">
+			<table>
+				<tr>
+					<td>
+						<table style="border: 1px solid gray; 
+						                    margin: auto; margin-bottom: 10px">
+							<tr>
+								<td>User Name:</td>
+								<td><input type="text" name="usr" 
+								      value="<%= TestConstants.TEST_USER %>" /></td>
+							</tr>
+							<tr>
+								<td>Password:</td>
+								<td><input type="password" 
+								    name="pwd" value="<%= TestConstants.TEST_PASSWORD %>" />
+								</td>
+							</tr>
+							<tr>
+							  <td align="left"><input type="checkbox" id="trace" value="1" checked="checked" />
+	                 Trace</td>
+								<td align="right"><input type="button"
+									value="Submit" onclick="login(this.form)" /></td>
+							</tr>
+						</table>
+					</td>
+					<td style="padding-left: 10px; position: relative" valign="top">
+					  <input type="button" value="Check" onclick="check()" /><br />
+					  <input type="button" value="Logout" onclick="logout()" /><br />
+					  <a href="saml2/metadata" id="metadata" target="_blank"
+					  	style="position: absolute; bottom: 0">Metadata</a>
+					</td>
+					<td style="padding-left: 10px;">
+						<!-- Test Result -->
+						<div id="test_res" style="display: inline-block; 
+							border: 1px solid gray; padding: 2px 5px; height: 100%"></div>
+						<script type="text/javascript">$("#test_res").hide()</script>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+
+	<!-- Config -->
+	<hr />
+	<div>
+		 <form>
+			<label for="cparams">Config</label>
+			<select id="cparams" name="cparams" onchange="hide_test_res()">
+				<option value=""></option>
+				<option value="param1">param1</option>
+				<option value="param1,param2">param1,param2</option>
+				<option value="param1,param2,paramxx">param1,param2,paramxx</option>
+			</select>
+			<button onclick="test_congig(this.form.cparams.value)" 
+			  type="button">Test</button><br />
+		  </form>
+	 </div>

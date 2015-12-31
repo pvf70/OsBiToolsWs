@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
+	<display-name>OsBi Map Editor Web Services</display-name>
+	
+	<listener>
+    	<listener-class>com.osbitools.ws.pd.web.WsInit</listener-class>
+	</listener>
+  
+	<servlet>
+      <servlet-name>VersionServlet</servlet-name>
+      <servlet-class>com.osbitools.ws.shared.web.VersionWsSrvServlet</servlet-class>
+  </servlet>
+  
+  <servlet>
+      <servlet-name>AuthenticationServlet</servlet-name>
+      <servlet-class>com.osbitools.ws.shared.web.AuthWsSrvServlet</servlet-class>
+  </servlet>
+    
+  <servlet>
+      <servlet-name>ConfigDsWsSrvServlet</servlet-name>
+      <servlet-class>com.osbitools.ws.shared.web.ConfigDsWsSrvServlet</servlet-class>
+  </servlet>
+    
+  <servlet>
+      <servlet-name>LogoutWsSrvServlet</servlet-name>
+      <servlet-class>com.osbitools.ws.shared.web.LogoutWsSrv</servlet-class>
+  </servlet>
+  
+  <servlet>
+      <servlet-name>ProjectManagerServlet</servlet-name>
+      <servlet-class>com.osbitools.ws.shared.prj.web.ProjectMgrWsSrvServlet</servlet-class>
+  </servlet>
+  
+  <servlet>
+      <servlet-name>EntityMapManagerServlet</servlet-name>
+      <servlet-class>com.osbitools.ws.shared.prj.web.EntityMgrWsSrvServlet</servlet-class>
+  </servlet>
+  
+  <servlet>
+      <servlet-name>EntityUtilsManagerServlet</servlet-name>
+      <servlet-class>com.osbitools.ws.shared.prj.web.EntityUtilsMgrWsSrvServlet</servlet-class>
+  </servlet>
+  
+  <servlet>
+      <servlet-name>ExFileMgrManagerServlet</servlet-name>
+      <servlet-class>com.osbitools.ws.shared.prj.web.ExFileMgrWsSrvServlet</servlet-class>
+  </servlet>
+  
+  <servlet>
+      <servlet-name>GitWsSrvServlet</servlet-name>
+      <servlet-class>com.osbitools.ws.shared.prj.web.GitWsSrvServlet</servlet-class>
+  </servlet>
+  
+  <servlet>
+      <servlet-name>LangSetWsSrvServlet</servlet-name>
+      <servlet-class>com.osbitools.ws.shared.prj.web.LangSetWsSrvServlet</servlet-class>
+  </servlet>
+  
+  <servlet>
+      <servlet-name>LsVersionServlet</servlet-name>
+      <servlet-class>com.osbitools.ws.shared.prj.web.LsVersionWsSrvServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+      <servlet-name>VersionServlet</servlet-name>
+      <url-pattern>/rest/version</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+      <servlet-name>AuthenticationServlet</servlet-name>
+      <url-pattern>/rest/auth</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+      <servlet-name>ConfigDsWsSrvServlet</servlet-name>
+      <url-pattern>/rest/cfg</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+      <servlet-name>LogoutWsSrvServlet</servlet-name>
+      <url-pattern>/rest/logout</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+      <servlet-name>ProjectManagerServlet</servlet-name>
+      <url-pattern>/rest/project</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+      <servlet-name>EntityMapManagerServlet</servlet-name>
+      <url-pattern>/rest/entity</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+      <servlet-name>EntityUtilsManagerServlet</servlet-name>
+      <url-pattern>/rest/entity_utils</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+      <servlet-name>ExFileMgrManagerServlet</servlet-name>
+      <url-pattern>/rest/ex_file</url-pattern>
+  </servlet-mapping>
+   
+  <servlet-mapping>
+      <servlet-name>GitWsSrvServlet</servlet-name>
+      <url-pattern>/rest/git</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+      <servlet-name>LangSetWsSrvServlet</servlet-name>
+      <url-pattern>/rest/ll_set</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+      <servlet-name>LsVersionServlet</servlet-name>
+      <url-pattern>/rest/ls_ver</url-pattern>
+  </servlet-mapping>
+  
+  <resource-ref>
+    <description>HSQLDB Test Connection</description>
+    <res-ref-name>jdbc/hsql1</res-ref-name>
+    <res-type>javax.sql.DataSource</res-type>
+    <res-auth>Container</res-auth>
+  </resource-ref>
+  
+  <resource-ref>
+    <description>HSQLDB Test Connection</description>
+    <res-ref-name>jdbc/hsql2</res-ref-name>
+    <res-type>javax.sql.DataSource</res-type>
+    <res-auth>Container</res-auth>
+  </resource-ref>
+  
+</web-app>

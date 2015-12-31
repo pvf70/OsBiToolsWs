@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ll_set xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:noNamespaceSchemaLocation="http://www.osbitools.com/xsd/ll_set.xsd"
+	lang_list="en,fr,ru" ver_max="1" ver_min="0">
+
+  <lang_label id="LL_USERNAME">
+    <ll_def lang="en" value="Username" />
+    <ll_def lang="fr" value="Nom d'utilisateur" />
+    <ll_def lang="ru" value="Имя" />
+  </lang_label>
+	
+  <lang_label id="LL_PASSWORD">
+    <ll_def lang="en" value="Password" />
+    <ll_def lang="fr" value="Mot de passe" />
+    <ll_def lang="ru" value="Пароль" />
+  </lang_label>
+  
+</ll_set>

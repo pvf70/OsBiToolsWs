@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
+	<display-name>OsBi Map Editor Web Services</display-name>
+	
+	<!-- Enable to allow web services include trace information. 
+	   In order to collect trace information on the client the &debug=on and 
+	   &trace=on parameters must present in URL
+	   
+	   Default: false
+	<context-param>  
+    		<description>Trace Flag</description>  
+    		<param-name>trace</param-name>  
+    		<param-value>true</param-value>
+	</context-param>
+	 -->
+	
+  <context-param>  
+        <description>Configuration Directory</description>  
+        <param-name>config_dir</param-name>  
+        <param-value>~/osbi_shared</param-value>
+  </context-param>
+	 
+	<listener>
+    	<listener-class>com.osbitools.ws.me.web.WsInit</listener-class>
+	</listener>
+	
+</web-app>

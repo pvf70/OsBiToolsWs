@@ -1,0 +1,35 @@
+<Configure class="org.mortbay.jetty.webapp.WebAppContext">
+	<Set name="initParams">
+		<Map>
+			<Entry>
+				<Item>config_dir</Item>
+				<Item><SystemProperty name="basedir.prj.shared" />/target/web_root/config</Item>
+			</Entry>
+			<Entry>
+				<Item>trace</Item>
+				<Item>true</Item>
+			</Entry>
+		</Map>
+	</Set>
+	
+	<New id="hdb1" class="org.mortbay.jetty.plus.naming.Resource">
+    <Arg>jdbc/hsql1</Arg>
+    <Arg>
+      <New class="org.hsqldb.jdbc.JDBCDataSource">
+        <Set name="DatabaseName">jdbc:hsqldb:hsql://localhost/test</Set>
+        <Set name="User">sa</Set>
+        <Set name="Password">test</Set>
+      </New>
+    </Arg>
+  </New>
+  <New id="hdb2" class="org.mortbay.jetty.plus.naming.Resource">
+    <Arg>jdbc/hsql2</Arg>
+    <Arg>
+      <New class="org.hsqldb.jdbc.JDBCDataSource">
+        <Set name="DatabaseName">jdbc:hsqldb:hsql://localhost/test</Set>
+        <Set name="User">sa</Set>
+        <Set name="Password">test</Set>
+      </New>
+    </Arg>
+  </New>
+</Configure>

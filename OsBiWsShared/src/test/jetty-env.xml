@@ -1,0 +1,14 @@
+<Configure class="org.mortbay.jetty.webapp.WebAppContext">
+	<Set name="initParams">
+		<Map>
+			<Entry>
+				<Item>config_dir</Item>
+				<Item><SystemProperty name="basedir" />/src/test/config</Item>
+			</Entry>
+			<Entry>
+				<Item>trace</Item>
+				<Item>true</Item>
+			</Entry>
+		</Map>
+	</Set>
+</Configure>

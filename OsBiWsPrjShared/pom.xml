@@ -1,0 +1,408 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>osbiws-prj-shared</artifactId>
+	<name>OsBiWsPrjSharedTools</name>
+	<description>Shared Project Management libraries for OsBiTools</description>
+	<url>http://www.osbitools.com</url>
+	<parent>
+		<relativePath>../</relativePath>
+		<groupId>com.osbitools</groupId>
+		<artifactId>ws</artifactId>
+		<version>1.0.0</version>
+	</parent>
+
+	<scm>
+		<connection>scm:svn:https://github.com/osbitools/OsBiGuiTools/trunk/OsBiPrjMgr</connection>
+	</scm>
+
+	<repositories>
+		<repository>
+			<id>jgit-repository</id>
+			<url>https://repo.eclipse.org/content/groups/releases/</url>
+		</repository>
+	</repositories>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.osbitools</groupId>
+			<artifactId>osbiws-shared</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.osbitools</groupId>
+			<artifactId>osbiws-shared</artifactId>
+			<version>${project.version}</version>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+
+    <dependency>
+      <groupId>com.osbitools</groupId>
+      <artifactId>osbiws-ls-shared</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>com.osbitools</groupId>
+      <artifactId>osbiws-ls-shared</artifactId>
+      <version>${project.version}</version>
+      <type>test-jar</type>
+      <scope>test</scope>
+    </dependency>
+    
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.jgit</groupId>
+			<artifactId>org.eclipse.jgit</artifactId>
+			<version>3.4.1.201406201815-r</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.persistence</groupId>
+			<artifactId>org.eclipse.persistence.moxy</artifactId>
+			<version>2.5.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mortbay.jetty</groupId>
+			<artifactId>jsp-2.1</artifactId>
+			<version>6.1.14</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.3.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>${selenium.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-firefox-driver</artifactId>
+			<version>${selenium.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-server</artifactId>
+			<version>${selenium.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>${http-client.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+			<version>${hsql-version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+				
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+
+				<configuration>
+					<source>${java-version}</source>
+					<target>${java-version}</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.5</version>
+				<executions>
+					<execution>
+						<id>default-jar</id>
+						<!-- <phase>package</phase> -->
+						<goals>
+							<goal>jar</goal>
+							<goal>test-jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- pre-integration-test group of plugins -->
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.16</version>
+				<configuration>
+					<skipTests>${skipTests}</skipTests>
+					<excludes>
+						<exclude>**/*GuiWebTest.java</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.7</version>
+				<configuration>
+					<includeEmptyDirs>true</includeEmptyDirs>
+				</configuration>
+				<executions>
+					<execution>
+						<id>copy-resources</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>target/web_root</outputDirectory>
+							<resources>
+								<resource>
+									<directory>src/test/web_root</directory>
+									<filtering>false</filtering>
+								</resource>
+								<resource>
+									<directory>src/test/filtered</directory>
+									<filtering>true</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.mortbay.jetty</groupId>
+				<artifactId>maven-jetty-plugin</artifactId>
+
+				<version>${jetty-version}</version>
+				<dependencies>
+					<!-- Dependency to jetty jndi -->
+					<dependency>
+						<groupId>org.mortbay.jetty</groupId>
+						<artifactId>jetty-plus</artifactId>
+						<version>${jetty-version}</version>
+					</dependency>
+
+					<!-- Dependency to jdbc driver -->
+					<dependency>
+						<groupId>org.hsqldb</groupId>
+						<artifactId>hsqldb</artifactId>
+						<version>${hsql-version}</version>
+					</dependency>
+				</dependencies>
+				<configuration>
+					<scanIntervalSeconds>10</scanIntervalSeconds>
+					<connectors>
+						<connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
+							<port>8090</port>
+							<maxIdleTime>60000</maxIdleTime>
+						</connector>
+					</connectors>
+					<jettyEnvXml>src/test/jetty-env.xml</jettyEnvXml>
+					<stopPort>9966</stopPort>
+					<stopKey>foo</stopKey>
+					<stopWait>1</stopWait>
+
+					<systemProperties>
+						<systemProperty>
+							<name>catalina.base</name>
+							<value>${project.build.directory}</value>
+						</systemProperty>
+						<systemProperty>
+							<name>basedir.prj.shared</name>
+							<value>${basedir}</value>
+						</systemProperty>
+					</systemProperties>
+
+					<webXml>${basedir}/src/test/web_it.xml</webXml>
+					<useTestClasspath>true</useTestClasspath>
+					<webAppConfig>
+						<contextPath>/web_test</contextPath>
+					</webAppConfig>
+					<webAppSourceDirectory>target/web_root/webapp</webAppSourceDirectory>
+				</configuration>
+				<executions>
+					<execution>
+						<id>start-jetty</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<scanIntervalSeconds>1</scanIntervalSeconds>
+							<daemon>true</daemon>
+							<skip>${skipTests}</skip>
+						</configuration>
+					</execution>
+
+					<execution>
+						<id>stop-jetty</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>stop</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>2.16</version>
+				<configuration>
+					<skipTests>${skipTests}</skipTests>
+					<runOrder>alphabetical</runOrder>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>integration-test</goal>
+							<goal>verify</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+		</plugins>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>release</id>
+			
+      <properties>
+        <skipTests>false</skipTests>
+      </properties>
+      
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-scm-plugin</artifactId>
+						<version>1.9.2</version>
+						<configuration>
+							<connectionType>connection</connectionType>
+							<exportDirectory>${basedir}/target/web_root/webapp/fr</exportDirectory>
+						</configuration>
+						<executions>
+							<execution>
+								<id>Export web server</id>
+								<phase>pre-integration-test</phase>
+								<goals>
+									<goal>export</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+
+					<plugin>
+						<artifactId>maven-resources-plugin</artifactId>
+						<version>2.7</version>
+						<configuration>
+							<includeEmptyDirs>true</includeEmptyDirs>
+						</configuration>
+						<executions>
+							<execution>
+								<id>copy-resources</id>
+								<phase>pre-integration-test</phase>
+								<goals>
+									<goal>copy-resources</goal>
+								</goals>
+								<configuration>
+									<outputDirectory>target/web_root</outputDirectory>
+									<resources>
+										<resource>
+											<directory>src/test/web_root</directory>
+											<filtering>false</filtering>
+										</resource>
+										<resource>
+											<directory>src/test/filtered</directory>
+											<filtering>true</filtering>
+										</resource>
+									</resources>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+
+					<plugin>
+						<artifactId>maven-failsafe-plugin</artifactId>
+						<version>2.16</version>
+						<configuration>
+							<runOrder>alphabetical</runOrder>
+							<skipTests>${skipTests}</skipTests>
+							<includes>
+								<include>**/*IT.java</include>
+								<include>**/*GuiWebTest.java</include>
+							</includes>
+						</configuration>
+						<executions>
+							<execution>
+								<goals>
+									<goal>integration-test</goal>
+									<goal>verify</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+    <!-- Profile GUI Integration test -->
+    <profile>
+      <id>gui</id>
+      
+      <properties>
+        <skipTests>false</skipTests>
+      </properties>
+      
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-failsafe-plugin</artifactId>
+            <version>2.16</version>
+            <configuration>
+              <runOrder>alphabetical</runOrder>
+              <includes>
+                <include>**/*IT.java</include>
+                <include>**/*GuiWebTest.java</include>
+              </includes>
+            </configuration>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>integration-test</goal>
+                  <goal>verify</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+	</profiles>
+
+</project>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
+	<display-name>OsBi Web Services</display-name>
+	
+	<listener>
+    	<listener-class>com.osbitools.ws.shared.web.WsInit</listener-class>
+	</listener>
+	
+	<!--
+	<context-param>  
+		<description>Trace Flag</description>  
+		<param-name>trace</param-name>  
+		<param-value>true</param-value>
+	</context-param>
+  
+	<context-param>  
+		<description>Configuration Directory</description>  
+		<param-name>config_dir</param-name>  
+		<param-value>src/test/config</param-value>
+	</context-param>
+	-->
+	
+	<servlet>
+  		<servlet-name>VersionServlet</servlet-name>
+  		<servlet-class>com.osbitools.ws.shared.web.VersionWsSrvServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+  		<servlet-name>AuthenticationServlet</servlet-name>
+  		<servlet-class>com.osbitools.ws.shared.web.AuthWsSrvServlet</servlet-class>
+	</servlet>
+		
+	<servlet>
+      <servlet-name>ConfigDsWsSrvServlet</servlet-name>
+      <servlet-class>com.osbitools.ws.shared.web.ConfigDsWsSrvServlet</servlet-class>
+  </servlet>
+	  
+	<servlet>
+  		<servlet-name>LogoutWsSrvServlet</servlet-name>
+  		<servlet-class>com.osbitools.ws.shared.web.LogoutWsSrv</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+  		<servlet-name>VersionServlet</servlet-name>
+  		<url-pattern>/rest/version</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+  		<servlet-name>AuthenticationServlet</servlet-name>
+  		<url-pattern>/rest/auth</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+      <servlet-name>ConfigDsWsSrvServlet</servlet-name>
+      <url-pattern>/rest/cfg</url-pattern>
+  </servlet-mapping>
+	
+	<servlet-mapping>
+  		<servlet-name>LogoutWsSrvServlet</servlet-name>
+  		<url-pattern>/rest/logout</url-pattern>
+	</servlet-mapping>
+	 
+</web-app>
